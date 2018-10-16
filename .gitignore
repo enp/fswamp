@@ -1,0 +1,6 @@
+.project
+.crossbar/node.pid
+.crossbar/key.*
+__pycache__
+.pydevproject
+.externalToolBuilders

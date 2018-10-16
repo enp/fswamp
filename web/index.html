@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+   <body>
+      <script src='https://cdn.jsdelivr.net/gh/crossbario/autobahn-js-browser@latest/autobahn.min.js'></script>
+      <script>
+         var connection = new autobahn.Connection({ url: 'ws://' + location.host + '/ws', realm: 'realm1' })
+         connection.onopen = function (session, details) {
+            console.log('Connected')
+            session.subscribe('call', function(args) { console.log(args) }).then(
+               function (sub) {
+                  console.log('subscribe to calls', sub)
+               },
+               function (err) {
+                  console.log('subscribe to calls error', err)
+               }
+            )
+         }
+         connection.onclose = function (reason, details) {
+            console.log('Connection lost', reason, details)
+         }
+         connection.open()
+      </script>
+   </body>
+</html>
